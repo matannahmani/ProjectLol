@@ -1,0 +1,30 @@
+#page-container {
+  position: relative;
+  min-height: 99vh;
+}
+#content-wrap {
+  padding-bottom: 60px;    /* Footer height + 20px spacer */
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;            /* Footer height */
+  text-align: center;
+  color: #ffffff;
+ span{
+  width: 203px;
+  height: 21px;
+  color: #ffffff;
+  font-family: $font1;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.97px;
+  line-height: 22px;
+ }
+}
+@media only screen and (max-width: 600px){
+  .footer{
+    // margin-top: 80px;
+  }
+}

@@ -1,0 +1,21 @@
+
+<%= simple_form_for(@stat) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="input-con">
+    <div class="form-inputs">
+      <% if controller.action_name == "create" || controller.action_name == "new"  %>
+        <h2 class="text-center">Create Stat</h2>
+        <% elsif controller.action_name == "edit" %>
+        <h2 class="text-center">Update Stat</h2>
+      <% end %>
+    <%= f.input :name %>
+
+    <div class="form-actions align-items-center justify-content-center d-flex flex-wrap">
+      <%= f.button :submit,"Save", class: "btn btn-main" %>
+      <%= link_to 'Back', stats_path, class: "btn btn-main" %>
+    </div>
+  </div>
+  </div>
+<% end %>

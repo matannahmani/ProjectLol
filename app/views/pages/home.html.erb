@@ -1,2 +1,53 @@
 <div class="homecon">
+    <% unless @optier.nil? %>
+    <div class="cardcon">
+      <h2 class="title">OP TIER</h2>
+      <% @optier.each do |player| %>
+      <div class="card">
+        <div class="cardimg">
+          <%= cl_image_tag player.photo.key, :width=>200, :height=>200, :gravity=>"face", crop: :thumb if player.photo.attached?%>
+        </div>
+        <div class="carddetails">
+          <span>NAME:&nbsp;&nbsp;&nbsp;<%= player.name %></span><br>
+          <span>TIER:&nbsp;&nbsp;&nbsp;<%= player.rank %></span><br>
+          <span>MOTO:&nbsp;&nbsp;&nbsp;<%= player.moto.empty? ? "NONE" : player.moto %></span><br>
+          <span>STATUS:&nbsp;&nbsp;&nbsp;<%= player.status %></span><br>
+          <ul class="list-inline rating-list">
+          <li><i data-id="<%= player.id%>" data-star="1" class="fas fa-star"></i></li>
+          <li><i data-id="<%= player.id%>" data-star="2" class="fas fa-star"></i></li>
+          <li><i data-id="<%= player.id%>" data-star="3" class="fas fa-star"></i></li>
+          <li><i data-id="<%= player.id%>" data-star="4" class="fas fa-star"></i></li>
+          <li><i data-id="<%= player.id%>" data-star="5" class="fas fa-star"></i></li>
+          </ul>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+    <% unless @atier.nil? %>
+    <div class="cardcon">
+      <h2 class="title">A TIER</h2>
+      <% @atier.each do |player| %>
+      <div class="card">
+        <div class="cardimg">
+          <%= cl_image_tag player.photo.key, :width=>200, :height=>200, :gravity=>"face", crop: :thumb if player.photo.attached?%>
+        </div>
+        <div class="carddetails">
+          <span>NAME:&nbsp;&nbsp;&nbsp;<%= player.name %></span><br>
+          <span>TIER:&nbsp;&nbsp;&nbsp;<%= player.rank %></span><br>
+          <span>MOTO:&nbsp;&nbsp;&nbsp;<%= player.moto.empty? ? "NONE" : player.moto %></span><br>
+          <span>STATUS:&nbsp;&nbsp;&nbsp;<%= player.status %></span><br>
+          <ul class="list-inline rating-list">
+          <li><i data-id="<%= player.id%>" data-star="1" class="fas fa-star"></i></li>
+          <li><i data-id="<%= player.id%>" data-star="2" class="fas fa-star"></i></li>
+          <li><i data-id="<%= player.id%>" data-star="3" class="fas fa-star"></i></li>
+          <li><i data-id="<%= player.id%>" data-star="4" class="fas fa-star"></i></li>
+          <li><i data-id="<%= player.id%>" data-star="5" class="fas fa-star"></i></li>
+          </ul>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
 </div>

@@ -12,9 +12,13 @@
   </head>
 
   <body>
-    <%#= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
-
-    <%= yield %>
+    <div id="page-container">
+      <div id="content-wrap">
+        <%= render 'shared/flashes' %>
+        <%= yield %>
+      </div>
+      <%= link_to "Panel", adminpanel_path, class: "btn btn-main btn-sticky" unless current_user.nil?%>
+    <%= render 'shared/footer' %>
+  </div>
   </body>
 </html>

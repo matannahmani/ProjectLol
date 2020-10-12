@@ -24,11 +24,74 @@ require("channels")
 
 // External imports
 import "bootstrap";
+    var current_star_statusses = [];
+    var star_elements;
+    star_elements = $('.fa-star').parent();
 
-// Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
+    star_elements.find(".fa-star").each(function(i, elem)
+    {
+       current_star_statusses.push($(elem).hasClass('yellow'));
+    });
 
+    star_elements.find(".fa-star").mouseenter(changeRatingStars);
+    star_elements.find(".fa-star").mouseleave(resetRatingStars);
+
+/**
+ * Changes the rating star colors when hovering over it.
+ */
+function changeRatingStars()
+{
+    // Current star hovered
+    var star = $(this);
+
+  // Removes all colors first from all stars
+  $('.fa-star').removeClass('gray').removeClass('yellow');
+
+  // Makes the current hovered star yellow
+  star.addClass('yellow');
+
+  // Makes the previous stars yellow and the next stars gray
+  star.parent().prevAll().children('.fa-star').addClass('yellow');
+  star.parent().nextAll().children('.fa-star').addClass('gray');
+}
+
+/**
+ * Resets the rating star colors when not hovered anymore.
+ */
+function resetRatingStars()
+{
+  star_elements.each(function(i, elem)
+                     {
+    $(elem).removeClass('yellow').removeClass('gray').addClass(current_star_statusses[i] ? 'yellow' : 'gray');
+  });
+}const postRate = (playerid,stars) => {
+  fetch(`${location}/playerrate`, {
+    method: 'post',
+    headers:  {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+    },
+    body: JSON.stringify({
+    player: {
+      id: playerid,
+      star: stars
+      }
+    })
+  });
+};
+const initpost = (star) => {
+  star.forEach ((item) => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      postRate(parseInt(item.dataset.id),parseInt(item.dataset.star));
+      item.parentNode.parentNode.style.display = 'none';
+    })
+  });
+}
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
+  const stars =  document.querySelectorAll(".fa-star")
+  if (stars !== "undefined" && stars !== null){
+    initpost(stars);
+  }
 });

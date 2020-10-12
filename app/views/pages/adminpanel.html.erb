@@ -1,0 +1,8 @@
+<div class="homecon">
+  <% unless current_user.nil?%>
+  <%= link_to "Player", players_path, class: "btn btn-main"%>
+  <%= link_to "Stat", stats_path, class: "btn btn-main"%>
+  <%= link_to "Player Stats", player_stats_path, class: "btn btn-main"%>
+  <% end %>
+  <%= link_to "Home", root_path, class: "btn btn-main"%>
+</div>
